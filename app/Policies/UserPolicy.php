@@ -2,6 +2,8 @@
 
 namespace App\Policies;
 
+namespace App\Policies;
+
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -9,14 +11,8 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function update(User $currentUser, User $user)
     {
-        'App\Model' => 'App\Policies\ModelPolicy',
-        \App\Models\User::class  => \App\Policies\UserPolicy::class,
+        return $currentUser->id === $user->id;
     }
 }
